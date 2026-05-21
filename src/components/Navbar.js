@@ -91,7 +91,7 @@ export default function Navbar() {
             {
                 open && (
 
-                    <div className="md:hidden border-t border-[#3ecf8e] bg-black px-6 py-6 flex flex-col gap-5">
+                    <div className="md:hidden border-t border-[#3ecf8e] bg-black px-6 py-6 flex flex-col gap-5 text-center items-center">
 
                         {
                             links.map((item, index) => (
