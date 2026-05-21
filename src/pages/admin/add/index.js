@@ -102,59 +102,57 @@ export default function AddMedicine() {
         <>
             <Navbar />
 
-            <div className="min-h-screen bg-black py-16 px-6">
+            <div className="min-h-screen bg-black py-10 sm:py-16 px-4 sm:px-6">
 
-                <div className="max-w-3xl mx-auto bg-zinc-900 border border-[#3ecf8e] rounded-3xl p-10">
+                <div className="max-w-3xl mx-auto bg-zinc-900 border border-[#3ecf8e] rounded-2xl sm:rounded-3xl p-5 sm:p-10">
 
-                    <h1 className="text-5xl text-center font-black text-[#3ecf8e] mb-10">Add Medicine</h1>
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl text-center font-black text-[#3ecf8e] mb-8 sm:mb-10">Add Medicine</h1>
 
-                    <form onSubmit={submitHandler} className="space-y-6">
+                    <form onSubmit={submitHandler} className="space-y-5 sm:space-y-6">
 
                         <div>
 
-                            <label className="block mb-3 text-lg font-semibold">Image URL</label>
+                            <label className="block mb-2 sm:mb-3 text-base sm:text-lg font-semibold">Image URL</label>
 
-                            <input type="text" name="image" value={formData.image} onChange={changeHandler} placeholder="Enter Image URL" className="w-full bg-black border border-[#3ecf8e] rounded-xl px-5 py-4 outline-none" />
+                            <input type="text" name="image" value={formData.image} onChange={changeHandler} placeholder="Enter Image URL" className="w-full bg-black border border-[#3ecf8e] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none text-sm sm:text-base" />
 
                         </div>
 
                         <div>
 
-                            <label className="block mb-3 text-lg font-semibold">Medicine Title</label>
+                            <label className="block mb-2 sm:mb-3 text-base sm:text-lg font-semibold">Medicine Title</label>
 
-                            <input type="text" name="title" value={formData.title} onChange={changeHandler} placeholder="Enter Medicine Name" className="w-full bg-black border border-[#3ecf8e] rounded-xl px-5 py-4 outline-none" />
-
-                        </div>
-
-                        <div>
-
-                            <label className="block mb-3 text-lg font-semibold">Description</label>
-
-                            <textarea name="description" value={formData.description} onChange={changeHandler} placeholder="Enter Description" className="w-full h-40 bg-black border border-[#3ecf8e] rounded-xl px-5 py-4 outline-none resize-none" />
+                            <input type="text" name="title" value={formData.title} onChange={changeHandler} placeholder="Enter Medicine Name" className="w-full bg-black border border-[#3ecf8e] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none text-sm sm:text-base" />
 
                         </div>
 
                         <div>
 
-                            <label className="block mb-3 text-lg font-semibold">Warranty</label>
+                            <label className="block mb-2 sm:mb-3 text-base sm:text-lg font-semibold">Description</label>
 
-                            <input type="text" name="waranty" value={formData.waranty} onChange={changeHandler} placeholder="Enter Warranty" className="w-full bg-black border border-[#3ecf8e] rounded-xl px-5 py-4 outline-none" />
+                            <textarea name="description" value={formData.description} onChange={changeHandler} placeholder="Enter Description" className="w-full h-32 sm:h-40 bg-black border border-[#3ecf8e] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none resize-none text-sm sm:text-base" />
 
                         </div>
 
                         <div>
 
-                            <label className="block mb-3 text-lg font-semibold">Price</label>
+                            <label className="block mb-2 sm:mb-3 text-base sm:text-lg font-semibold">Warranty</label>
 
-                            <input type="number" name="price" value={formData.price} onChange={changeHandler} placeholder="Enter Price" className="w-full bg-black border border-[#3ecf8e] rounded-xl px-5 py-4 outline-none" />
+                            <input type="text" name="waranty" value={formData.waranty} onChange={changeHandler} placeholder="Enter Warranty" className="w-full bg-black border border-[#3ecf8e] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none text-sm sm:text-base" />
 
                         </div>
 
-                        <button disabled={loading} className="w-full bg-[#3ecf8e] hover:bg-[#2c9465] text-black font-bold py-4 rounded-xl text-lg duration-300">
+                        <div>
+
+                            <label className="block mb-2 sm:mb-3 text-base sm:text-lg font-semibold">Price</label>
+
+                            <input type="number" name="price" value={formData.price} onChange={changeHandler} placeholder="Enter Price" className="w-full bg-black border border-[#3ecf8e] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none text-sm sm:text-base" />
+
+                        </div>
+
+                        <button disabled={loading} className="w-full bg-[#3ecf8e] hover:bg-[#2c9465] text-black font-bold py-3 sm:py-4 rounded-xl text-base sm:text-lg duration-300">
                             {
-                                loading
-                                    ? "Adding..."
-                                    : "Add Medicine"
+                                loading ? "Adding..." : "Add Medicine"
                             }
                         </button>
 

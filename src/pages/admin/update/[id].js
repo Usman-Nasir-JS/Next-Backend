@@ -107,35 +107,31 @@ export default function Update({ product }) {
         <>
             <Navbar />
 
-            <div className="max-w-3xl mx-auto px-6 py-16">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
 
-                <div className="bg-zinc-900 border border-[#3ecf8e] rounded-3xl p-10">
+                <div className="bg-zinc-900 border border-[#3ecf8e] rounded-2xl sm:rounded-3xl p-5 sm:p-10">
 
-                    <h1 className="text-5xl text-center font-black text-[#3ecf8e] mb-10">Update Medicine</h1>
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl text-center font-black text-[#3ecf8e] mb-8 sm:mb-10">Update Medicine</h1>
 
-                    <form onSubmit={submitHandler} className="space-y-6">
+                    <form onSubmit={submitHandler} className="space-y-5 sm:space-y-6">
 
-                        <input type="text" name="image" value={formData.image} onChange={changeHandler} placeholder="Enter Image URL" className="w-full bg-black border border-[#3ecf8e] px-5 py-4 rounded-xl outline-none" />
+                        <input type="text" name="image" value={formData.image} onChange={changeHandler} placeholder="Enter Image URL" className="w-full bg-black border border-[#3ecf8e] px-4 sm:px-5 py-3 sm:py-4 rounded-xl outline-none text-sm sm:text-base" />
 
-                        <input type="text" name="title" value={formData.title} onChange={changeHandler} placeholder="Enter Medicine Title" className="w-full bg-black border border-[#3ecf8e] px-5 py-4 rounded-xl outline-none" />
+                        <input type="text" name="title" value={formData.title} onChange={changeHandler} placeholder="Enter Medicine Title" className="w-full bg-black border border-[#3ecf8e] px-4 sm:px-5 py-3 sm:py-4 rounded-xl outline-none text-sm sm:text-base" />
 
-                        <textarea name="description" value={formData.description} onChange={changeHandler} placeholder="Enter Description" className="w-full bg-black border border-[#3ecf8e] px-5 py-4 rounded-xl outline-none h-40 resize-none" />
+                        <textarea name="description" value={formData.description} onChange={changeHandler} placeholder="Enter Description" className="w-full bg-black border border-[#3ecf8e] px-4 sm:px-5 py-3 sm:py-4 rounded-xl outline-none h-32 sm:h-40 resize-none text-sm sm:text-base" />
 
-                        <input type="text" name="waranty" value={formData.waranty} onChange={changeHandler} placeholder="Enter Warranty" className="w-full bg-black border border-[#3ecf8e] px-5 py-4 rounded-xl outline-none" />
+                        <input type="text" name="waranty" value={formData.waranty} onChange={changeHandler} placeholder="Enter Warranty" className="w-full bg-black border border-[#3ecf8e] px-4 sm:px-5 py-3 sm:py-4 rounded-xl outline-none text-sm sm:text-base" />
 
-                        <input type="number" name="price" value={formData.price} onChange={changeHandler} placeholder="Enter Price" className="w-full bg-black border border-[#3ecf8e] px-5 py-4 rounded-xl outline-none" />
+                        <input type="number" name="price" value={formData.price} onChange={changeHandler} placeholder="Enter Price" className="w-full bg-black border border-[#3ecf8e] px-4 sm:px-5 py-3 sm:py-4 rounded-xl outline-none text-sm sm:text-base" />
 
                         <div className="flex flex-col gap-4">
 
-                            <button disabled={loading} className="w-full bg-[#3ecf8e] hover:bg-[#2c9465] text-black font-bold py-4 rounded-xl duration-300">
-                                {
-                                    loading
-                                        ? "Updating..."
-                                        : "Update Medicine"
-                                }
+                            <button disabled={loading} className="w-full bg-[#3ecf8e] hover:bg-[#2c9465] text-black font-bold py-3 sm:py-4 rounded-xl duration-300 text-sm sm:text-base">
+                                {loading ? "Updating..." : "Update Medicine"}
                             </button>
 
-                            <button type="button" onClick={() => router.push("/admin")} className="w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-4 rounded-xl duration-300">
+                            <button type="button" onClick={() => router.push("/admin")} className="w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 sm:py-4 rounded-xl duration-300 text-sm sm:text-base">
                                 Cancel
                             </button>
 

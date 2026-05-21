@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 import { UserButton, SignInButton, useUser } from "@clerk/nextjs";
 
@@ -9,6 +10,8 @@ export default function Navbar() {
     const router = useRouter();
 
     const { isSignedIn } = useUser();
+
+    const [open, setOpen] = useState(false);
 
     const links = [
         {
@@ -32,13 +35,13 @@ export default function Navbar() {
     return (
         <nav className="bg-black border-b border-[#3ecf8e] sticky top-0 z-50">
 
-            <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
 
                 <Link href="/">
-                    <h1 className="text-3xl font-black text-[#3ecf8e] cursor-pointer">MedicalStore</h1>
+                    <h1 className="text-2xl sm:text-3xl font-black text-[#3ecf8e] cursor-pointer">MedicalStore</h1>
                 </Link>
 
-                <div className="flex items-center gap-10">
+                <div className="hidden md:flex items-center gap-10">
 
                     {
                         links.map((item, index) => (
@@ -76,9 +79,61 @@ export default function Navbar() {
 
                 </div>
 
+                {/* MOBILE TOGGLE */}
+                <button onClick={() => setOpen(!open)} className="md:hidden text-white text-3xl" >
+                    {
+                        open ? "✕" : "☰"
+                    }
+                </button>
+
             </div>
+
+            {
+                open && (
+
+                    <div className="md:hidden border-t border-[#3ecf8e] bg-black px-6 py-6 flex flex-col gap-5">
+
+                        {
+                            links.map((item, index) => (
+
+                                <Link key={index} href={item.path} onClick={() => setOpen(false)} className={`font-semibold text-lg hover:text-[#3ecf8e] duration-300 ${
+                                        router.pathname === item.path
+                                            ? "text-[#3ecf8e]"
+                                            : "text-white"
+                                    }`}
+                                >
+                                    {item.name}
+                                </Link>
+
+                            ))
+                        }
+
+                        {
+                            !isSignedIn ? (
+
+                                <SignInButton mode="modal">
+
+                                    <button className="bg-[#3ecf8e] hover:bg-green-500 text-black px-5 py-3 rounded-xl font-bold duration-300">
+                                        Login
+                                    </button>
+
+                                </SignInButton>
+
+                            ) : (
+
+                                <div className="mt-2">
+                                    <UserButton afterSignOutUrl="/" />
+                                </div>
+
+                            )
+                        }
+
+                    </div>
+
+                )
+            }
 
         </nav>
     );
-
+    
 }

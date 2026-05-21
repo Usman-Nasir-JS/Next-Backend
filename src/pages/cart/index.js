@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useUser, SignInButton } from "@clerk/nextjs";
 
-
 export default function Cart() {
 
     const router = useRouter();
@@ -21,7 +20,7 @@ export default function Cart() {
 
         setCart(updatedCart);
 
-        localStorage.setItem( "cart", JSON.stringify(updatedCart) );
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
 
     }, []);
 
@@ -31,7 +30,7 @@ export default function Cart() {
 
         setCart(filtered);
 
-        localStorage.setItem( "cart", JSON.stringify(filtered) );
+        localStorage.setItem("cart", JSON.stringify(filtered));
 
     };
 
@@ -45,7 +44,10 @@ export default function Cart() {
                     return item;
                 }
 
-                return { ...item, quantity: item.quantity + 1 };
+                return {
+                    ...item,
+                    quantity: item.quantity + 1
+                };
             }
 
             return item;
@@ -53,8 +55,8 @@ export default function Cart() {
 
         setCart(updatedCart);
 
-        localStorage.setItem( "cart", JSON.stringify(updatedCart) );
-    
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+
     };
 
     const decreaseQuantity = (id) => {
@@ -67,7 +69,7 @@ export default function Cart() {
                     return item;
                 }
 
-                return { ...item, quantity: item.quantity - 1 };
+                return { ...item, quantity: item.quantity - 1};
             }
 
             return item;
@@ -75,14 +77,14 @@ export default function Cart() {
 
         setCart(updatedCart);
 
-        localStorage.setItem( "cart", JSON.stringify(updatedCart));
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
 
     };
 
     const totalPrice = cart.reduce((acc, item) => {
 
         return acc + (item.price * item.quantity);
-
+    
     }, 0);
 
     const purchaseAll = () => {
@@ -111,62 +113,64 @@ export default function Cart() {
         <>
             <Navbar />
 
-            <div className="max-w-7xl mx-auto px-6 py-14 min-h-screen">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14 min-h-screen">
 
-                <h1 className="text-5xl text-center font-black text-[#3ecf8e]">Shopping Carts</h1>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl text-center font-black text-[#3ecf8e]">Shopping Carts</h1>
 
                 {
                     cart.length === 0 ? (
 
-                        <div className="flex items-center justify-center h-[60vh]">
+                        <div className="flex items-center justify-center h-[50vh] sm:h-[60vh]">
 
-                            <h1 className="text-4xl font-bold text-gray-500">There is No carts...!</h1>
+                            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-500 text-center">There is No carts...!</h1>
 
                         </div>
 
                     ) : (
 
                         <>
-                            <div className="mt-10 space-y-8">
+                            <div className="mt-8 sm:mt-10 space-y-6 sm:space-y-8">
 
                                 {
                                     cart.map(item => (
 
-                                        <div key={item.id} className="bg-zinc-900 border border-[#3ecf8e] rounded-3xl p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+                                        <div key={item.id} className="bg-zinc-900 border border-[#3ecf8e] rounded-3xl p-4 sm:p-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
 
-                                            <div className="flex items-center gap-5">
+                                            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
 
-                                                <img src={item.image} alt={item.title} className="w-36 h-36 object-cover rounded-2xl" />
+                                                <img src={item.image} alt={item.title} className="w-full max-w-55 sm:w-36 sm:h-36 object-cover rounded-2xl" />
 
-                                                <div>
+                                                <div className="text-center sm:text-left">
 
-                                                    <h1 className="text-3xl font-black text-[#3ecf8e]">{item.title}</h1>
+                                                    <h1 className="text-2xl sm:text-3xl font-black text-[#3ecf8e] wrap-break-word">Title: {item.title}</h1>
 
-                                                    <p className="text-gray-400 mt-3">{item.description}</p>
+                                                    <p className="text-gray-400 mt-3 text-sm sm:text-base leading-7 wrap-break-word">Description: {item.description}</p>
 
-                                                    <h2 className="mt-4 text-2xl font-bold">${ item.price * item.quantity }</h2>
+                                                    <h2 className="mt-4 text-2xl sm:text-3xl font-bold">Price: ${item.price * item.quantity}</h2>
 
                                                 </div>
 
                                             </div>
 
-                                            <div className="flex flex-col items-end gap-5">
+                                            <div className="flex flex-col items-center lg:items-end gap-5">
 
                                                 <div className="flex items-center bg-black border border-[#3ecf8e] rounded-xl overflow-hidden">
 
-                                                    <button onClick={() => decreaseQuantity(item.id) } className="px-5 py-3 text-2xl font-bold hover:bg-zinc-800">
+                                                    <button onClick={() => decreaseQuantity(item.id)} className="px-4 sm:px-5 py-2 sm:py-3 text-xl sm:text-2xl font-bold hover:bg-zinc-800">
                                                         -
                                                     </button>
 
-                                                    <span className="px-6 text-xl font-bold">{item.quantity}</span>
+                                                    <span className="px-5 sm:px-6 text-lg sm:text-xl font-bold">
+                                                        {item.quantity}
+                                                    </span>
 
-                                                    <button onClick={() => increaseQuantity(item.id) } className="px-5 py-3 text-2xl font-bold hover:bg-zinc-800" >
+                                                    <button onClick={() => increaseQuantity(item.id)} className="px-4 sm:px-5 py-2 sm:py-3 text-xl sm:text-2xl font-bold hover:bg-zinc-800">
                                                         +
                                                     </button>
 
                                                 </div>
 
-                                                <button onClick={() => removeItem(item.id) } className="bg-red-500 hover:bg-red-600 px-8 py-3 rounded-xl font-bold">
+                                                <button onClick={() => removeItem(item.id)} className="w-full sm:w-auto bg-red-500 hover:bg-red-600 px-6 sm:px-8 py-3 rounded-xl font-bold duration-300">
                                                     Remove
                                                 </button>
 
@@ -179,16 +183,16 @@ export default function Cart() {
 
                             </div>
 
-                            <div className="mt-14 bg-zinc-900 border border-[#3ecf8e] rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                            <div className="mt-10 sm:mt-14 bg-zinc-900 border border-[#3ecf8e] rounded-3xl p-5 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-6">
 
-                                <h1 className="text-5xl font-black text-[#3ecf8e]">Total: ${totalPrice}</h1>
+                                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#3ecf8e] text-center">Total: ${totalPrice}</h1>
 
                                 {
                                     !isSignedIn ? (
 
                                         <SignInButton mode="modal">
 
-                                            <button className="bg-[#3ecf8e] hover:bg-[#2c9465] text-black font-black px-10 py-4 rounded-2xl text-xl duration-300">
+                                            <button className="w-full sm:w-auto bg-[#3ecf8e] hover:bg-[#2c9465] text-black font-black px-8 sm:px-10 py-4 rounded-2xl text-lg sm:text-xl duration-300">
                                                 Purchase All
                                             </button>
 
@@ -196,7 +200,7 @@ export default function Cart() {
 
                                     ) : (
 
-                                        <button onClick={purchaseAll} className="bg-[#3ecf8e] hover:bg-[#2c9465] text-black font-black px-10 py-4 rounded-2xl text-xl duration-300">
+                                        <button onClick={purchaseAll} className="w-full sm:w-auto bg-[#3ecf8e] hover:bg-[#2c9465] text-black font-black px-8 sm:px-10 py-4 rounded-2xl text-lg sm:text-xl duration-300">
                                             {
                                                 cart.length === 1
                                                     ? "Purchase"
@@ -209,7 +213,9 @@ export default function Cart() {
 
                             </div>
                         </>
+
                     )
+
                 }
 
             </div>
@@ -217,5 +223,5 @@ export default function Cart() {
             <Footer />
         </>
     );
-    
+
 }
